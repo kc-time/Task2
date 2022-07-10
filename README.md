@@ -22,7 +22,7 @@ Use `Post` method on postman with `Body` option `x-www-form-urlencoded`
 `userid: userid` & `password: password`
 
 ```js
-http://localhost:8000/users
+http://localhost:5000/users
 ```
 
 ### Login a user
@@ -34,7 +34,7 @@ Use `Post` method on postman with `Body` option `x-www-form-urlencoded`
 `userid: userid` & `password: password`
 
 ```js
-http://localhost:8000/users/login
+http://localhost:5000/users/login
 ```
 
 ### Logout a user
@@ -44,7 +44,7 @@ http://localhost:8000/users/login
 Use `Post` method on postman
 
 ```js
-http://localhost:8000/users/logout
+http://localhost:5000/users/logout
 ```
 
 ### Check User Porfolio
@@ -58,7 +58,7 @@ Can only work after login
 Will only show the latest 5 subscription due to stock API limited
 
 ```js
-http://localhost:8000/users/portfolio
+http://localhost:5000/users/portfolio
 ```
 
 ### Create Tweet
@@ -72,7 +72,7 @@ Can only work after login
 `content: YourContentHere`
 
 ```js
-http://localhost:4000/tweets
+http://localhost:5000/tweets
 ```
 
 ### Add Balance
@@ -86,7 +86,7 @@ Can only work after login
 `amount: YourTopupMoneyAmount`
 
 ```js
-http://localhost:4000/wallets/addbalance
+http://localhost:5000/wallets/addbalance
 ```
 
 ### Check Stock
@@ -100,7 +100,7 @@ Use `GET` method on postman
 Can only work after login
 
 ```js
-http://localhost:4000/stocks/:stockSymbol
+http://localhost:5000/stocks/:stockSymbol
 ```
 
 ### Buy Shares
@@ -114,7 +114,7 @@ Can only work after login
 `amount: sharesAmount`
 
 ```js
-http://localhost:4000/stocks/:stockSymbol/buy
+http://localhost:5000/stocks/:stockSymbol/buy
 ```
 
 ### Sell Shares
@@ -128,7 +128,7 @@ Can only work after login
 `amount: sharesAmount`
 
 ```js
-http://localhost:4000/stocks/:stockSymbol/sell
+http://localhost:5000/stocks/:stockSymbol/sell
 ```
 
 ### Subscribe Stock
@@ -140,5 +140,5 @@ Use `POST` method on postman
 Can only work after login, Will only show the latest 5 subscription due to stock API limited
 
 ```js
-http://localhost:4000/stocks/:stockSymbol/subcribe
+http://localhost:5000/stocks/:stockSymbol/subcribe
 ```
