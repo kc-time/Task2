@@ -1,6 +1,7 @@
 import User from "../models/userModel";
 import Wallet from "../models/walletModel";
 import Stock from "../models/stockModel";
+const alpha = require('alphavantage')({ key: 'GJ0X8OLY4UNPL2V2' });
 
 let session;
 
@@ -72,4 +73,31 @@ export const logout = (req, res) => {
   req.session.destroy(() => {
     req.send('User logout')
   });
+}
+
+export const showPortfolio = async (req, res) => {
+
+  const wallet = await Wallet.findOne({owner_id: req.session.userid});
+  if (!wallet) return res.status(403);
+  const stock = await Stock.findOne({owner_id: req.session.userid});
+  if (!stock) return res.status(403);
+
+  let data;
+  let hasError = false;
+  const subscription =  await Promise.all(stock.subscription.slice(-5).map(async item => {
+      if (hasError) return;
+      try {
+          data = await alpha.data.quote(item.symbol);
+      } catch (error) {
+          hasError = true;
+          return res.status(500).send('Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.');
+      }
+      return {symbol: item.symbol, price: data ? data["Global Quote"]['05. price'] || null : null};
+  }));
+  if (!hasError)
+  return res.send({
+      balance: wallet.balance,
+      stocks: stock.items,
+      subscription
+  })
 }
