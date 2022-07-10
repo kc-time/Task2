@@ -16,6 +16,22 @@ export const register = (req, res) => {
     if (err) {
       return res.status(400).send(err)
     }
+    let newWallet = new Wallet({
+      owner_id: user._id
+    })
+    newWallet.save((err, wallet) => {
+      if (err) {
+        return res.status(400).send(err)
+      }
+    })
+    let newStock = new Stock({
+      owner_id: user._id
+    })
+    newStock.save((err, stock) => {
+      if (err) {
+        return res.status(400).send(err)
+      }
+    })
 
     return res.status(201).send({
       message: "Register success!"
