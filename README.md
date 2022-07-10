@@ -93,6 +93,8 @@ http://localhost:4000/wallets/addbalance
 
 `GET /stocks/:stockSymbol`
 
+symbols e.g. `AAPL` `MSFT` `GOOGL` `AMD` `TSLA` `TSM` `AMZN` `META`
+
 Use `GET` method on postman
 
 Can only work after login
